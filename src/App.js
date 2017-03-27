@@ -8,6 +8,7 @@ import actionResponse from './structures/ActionResponse.json';
 import actionRequest from './structures/ActionRequest.json';
 import metadataRequest from './structures/MetadataRequest.json';
 import metadataResponse from './structures/MetadataResponse.json';
+import configurationValue from './structures/ConfigurationValue.json';
 
 const theme = {
   scheme: 'monokai',
@@ -48,9 +49,7 @@ class App extends Component {
           <button className="square" onClick={() => fileDownload(JSON.stringify(metadataRequest, null, 2), 'MetadataRequestProfile.json')}>
               Metadata Request Profile
           </button><br/><br/>
-          <br/>
-          <JSONTree data={metadataRequest} theme={theme}/>
-          <br/><br/>
+          {/**<JSONTree data={metadataRequest} theme={theme}/><br/><br/>**/}          
           <button className="square" onClick={() => fileDownload(JSON.stringify(metadataResponse,null, 2), 'MetadataResponseProfile.json')}>
               Metadata Response Profile
           </button>
