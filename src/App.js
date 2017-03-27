@@ -38,6 +38,7 @@ class App extends Component {
         <div className="App-header">
           <h2>WhomiBoo</h2>
         </div>
+        <p>This project is under active development and is not fully functional.</p>
         <p className="App-intro">
           <br/>
           <button className="square" onClick={() => fileDownload(JSON.stringify(actionResponse, null, 2), 'MessageActionRequestProfile.json')}>
@@ -49,7 +50,7 @@ class App extends Component {
           <button className="square" onClick={() => fileDownload(JSON.stringify(metadataRequest, null, 2), 'MetadataRequestProfile.json')}>
               Metadata Request Profile
           </button><br/><br/>
-          {/**<JSONTree data={metadataRequest} theme={theme}/><br/><br/>**/}          
+          {/**<JSONTree data={metadataRequest} theme={theme}/><br/><br/>**/}
           <button className="square" onClick={() => fileDownload(JSON.stringify(metadataResponse,null, 2), 'MetadataResponseProfile.json')}>
               Metadata Response Profile
           </button>
