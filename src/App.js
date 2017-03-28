@@ -1,43 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 {/**import JSONTree from 'react-json-tree';**/}
 import { Button, Panel } from 'react-bootstrap';
 var fileDownload = require('react-file-download');
-
+import update from 'immutability-helper';
 import actionResponse from './structures/ActionResponse.json';
-import actionRequest from './structures/ActionRequest.json';
 import metadataRequest from './structures/MetadataRequest.json';
 import metadataResponse from './structures/MetadataResponse.json';
-import configurationValue from './structures/ConfigurationValue.json';
-
-class MetadataViewer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render  () {
-    const listConfig = this.props.metadata.configurationValues.map((value) => <p>{value.developerName}</p>);
-    const listActions = this.props.metadata.actions.map((value) => <p>{value.developerName}</p>);
-    const listTypes = this.props.metadata.install.typeElements.map((value) => <p>{value.developerName}</p>);
-
-    return (
-      <div>
-      <Panel header="List of configurationValues" bsStyle="success">
-        {listConfig}
-      </Panel>
-      <Panel header="List of actions" bsStyle="success">
-        {listActions}
-      </Panel>
-      <Panel header="List of types" bsStyle="success">
-        {listTypes}
-      </Panel>
-      </div>
-    );
-  }
-}
+import actionRequest from './structures/ActionRequest.json';
+import MetadataViewer from './MetadataViewer'
 
 class App extends Component {
+    constructor(props){
+        super(props);
+        this.state = {metadata: metadataResponse};
+    }
+
+    modifyMetadata = (metadataParam) => {
+        this.setState({
+            metadata: metadataParam
+        });
+    };
+
+    addConfigurationValue = (configurationValue) => {
+        const stateCopy = update(this.state.metadata, {configurationValues: { $push: [configurationValue]}});
+        this.setState({metadata: stateCopy});
+    }
+
+    removeConfigurationValue = (configurationValue) => {
+
+        const stateCopy = update(this.state.metadata, {configurationValues: { $splice: [configurationValue]}});
+        this.setState({metadata: stateCopy});
+    }
+
   render() {
     return (
       <div className="App">
@@ -47,7 +42,7 @@ class App extends Component {
         <p>This project is under active development and is not fully functional.</p>
         <p className="App-intro">
           <br/>
-          <Button bsStyle="primary" className="square" onClick={() => fileDownload(JSON.stringify(actionResponse, null, 2), 'MessageActionRequestProfile.json')}>
+          <Button bsStyle="primary" className="square" onClick={() => fileDownload(JSON.stringify(actionRequest, null, 2), 'MessageActionRequestProfile.json')}>
               Message Action Request Profile (static)
           </Button> <br/><br/>
           <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionResponse, null, 2), 'MessageActionResponseProfile.json')}>
@@ -61,7 +56,7 @@ class App extends Component {
               Metadata Response Profile
           </Button>
           <br/><br/>
-          <MetadataViewer metadata={metadataResponse} />
+          <MetadataViewer metadata={this.modifyMetadata} response={this.state.metadata} addConfigurationValue={this.addConfigurationValue} removeConfigurationValue={this.removeConfigurationValue} />
         </p>
       </div>
     );
