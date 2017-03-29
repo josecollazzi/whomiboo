@@ -8,20 +8,24 @@ class MetadataViewer extends Component {
   }
 
   render  () {
-    const listConfig = this.props.response.configurationValues.map((value) => <p>{value.developerName} <button onClick={(e)=>handleClick(e,value.developerName)}>remove</button></p>);
+    const listConfig = this.props.response.configurationValues.map(
+      (value) => <p>{value.developerName}
+      <Button bsStyle="danger" onClick={(e)=>handleClick(e,value.developerName, this.props.removeConfigurationValue)}>remove</Button></p>
+    );
     const listActions = this.props.response.actions.map((value) => <p>{value.developerName}</p>);
     const listTypes = this.props.response.install.typeElements.map((value) => <p>{value.developerName}</p>);
 
-    function handleClick(e, developerName) {
+    function handleClick(e, developerName, removeConfigurationValue) {
+      console.log(developerName);
         e.preventDefault();
-        this.props.removeConfigurationValue(developerName);
+        removeConfigurationValue(developerName);
     }
 
     return (
       <div>
-        <button onClick={()=>this.props.addConfigurationValue(configurationValue)}>add one</button>
-        <br />
       <Panel header="List of configurationValues" bsStyle="success">
+        <Button bsStyle="success" onClick={()=>this.props.addConfigurationValue(configurationValue)}>add a new configuration value</Button>
+        <br /><br />
         {listConfig}
       </Panel>
       <Panel header="List of actions" bsStyle="success">

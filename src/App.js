@@ -27,10 +27,17 @@ class App extends Component {
         this.setState({metadata: stateCopy});
     }
 
-    removeConfigurationValue = (configurationValue) => {
-
-        const stateCopy = update(this.state.metadata, {configurationValues: { $splice: [configurationValue]}});
-        this.setState({metadata: stateCopy});
+    removeConfigurationValue = (developerName) => {
+        let index = null;
+        for (var i = 0; i < this.state.metadata.configurationValues.length; i++) {
+            if(this.state.metadata.configurationValues[i].developerName == developerName) {
+                index = i+1;
+            }
+        }
+        if(index!= null) {
+            const stateCopy = update(this.state.metadata, {configurationValues: { $splice: [[0,index]]}});
+            this.setState({metadata: stateCopy});
+        }
     }
 
   render() {
@@ -51,7 +58,6 @@ class App extends Component {
           <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(metadataRequest, null, 2), 'MetadataRequestProfile.json')}>
               Metadata Request Profile
           </Button><br/><br/>
-          {/**<JSONTree data={metadataRequest} theme={theme}/><br/><br/>**/}
           <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(metadataResponse,null, 2), 'MetadataResponseProfile.json')}>
               Metadata Response Profile
           </Button>
