@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { Button, Panel } from 'react-bootstrap';
 import Modal from 'react-modal';
-import configurationValue from './structures/ConfigurationValue.json';
 
 class MetadataViewer extends Component {
     constructor(props) {
         super(props);
-        this.state = {modalIsOpen: false};
+        this.state = {
+            modalIsOpen: false,
+            configName: "",
+            configType: "ContentString"
+        };
+
+        this.handleConfigNameChange = this.handleConfigNameChange.bind(this);
+        this.handleConfigTypeChange = this.handleConfigTypeChange.bind(this);
 
         this.openModal = this.openModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -23,22 +29,39 @@ class MetadataViewer extends Component {
     }
 
     closeModal() {
+        const configValue = {
+            "developerName": this.state.configName,
+            "contentValue": null,
+            "contentType": this.state.configType,
+            "typeElementDeveloperName": null,
+            "ordinal": 0,
+            "required": true
+        };
+
+        this.props.addConfigurationValue(configValue);
         this.setState({modalIsOpen: false});
     }
 
+    handleConfigNameChange(event) {
+        this.setState({configName: event.target.value});
+    }
+
+    handleConfigTypeChange(event) {
+        this.setState({configType: event.target.value});
+    }
+
+    handleClickForRemoveConfigValue(e, developerName, removeConfigurationValue){
+        e.preventDefault();
+        removeConfigurationValue(developerName);
+    };
+
     render  () {
         const listConfig = this.props.response.configurationValues.map(
-            (value) => <p>{value.developerName}
-              <Button bsStyle="danger" onClick={(e)=>handleClick(e,value.developerName, this.props.removeConfigurationValue)}>remove</Button></p>
+            (value) => <p>{value.developerName + "("+ value.contentType + ")"}
+              <Button bsStyle="danger" onClick={(e)=>this.handleClickForRemoveConfigValue(e,value.developerName, this.props.removeConfigurationValue)}>remove</Button></p>
         );
         const listActions = this.props.response.actions.map((value) => <p>{value.developerName}</p>);
         const listTypes = this.props.response.install.typeElements.map((value) => <p>{value.developerName}</p>);
-
-        function handleClick(e, developerName, removeConfigurationValue) {
-            console.log(developerName);
-            e.preventDefault();
-            removeConfigurationValue(developerName);
-        }
 
         const customStyles = {
             content : {
@@ -62,19 +85,22 @@ class MetadataViewer extends Component {
                       style={customStyles}
                       contentLabel="Example Modal"
                   >
-
                     <h2 ref="subtitle">Add a Configuration Value</h2>
-
-                    <div>I am a modal</div>
                     <form>
-                      <input id="inputNameValue"/><br />
-                      <input id="inputTypeValue"/>
-                    </form>
-                    <button onClick={this.closeModal}> Cancel </button>
+                        <label>Configuration Name</label><br/>
+                        <input value={this.state.configName} onChange={this.handleConfigNameChange}/><br /><br/>
+                        <label>Configuration Type</label><br/>
+                        <select value={this.state.configType} onChange={this.handleConfigTypeChange}>
+                            <option value="ContentString">ContentString</option>
+                            <option value="ContentNumber">ContentNumber</option>
+                            <option value="ContentPassword">ContentPassword</option>
+                            <option value="ContentDateTime">ContentDateTime</option>
+                        </select>
+                    </form><br/><br/><br/>
                     <button onClick={this.closeModal}> Create </button>
                   </Modal>
                 </div>
-                <Button bsStyle="success" onClick={()=>this.props.addConfigurationValue(configurationValue)}>add a new configuration value</Button>
+                <Button bsStyle="success" onClick={()=>this.openModal()}> Add a new configuration value </Button>
                 <br /><br />
                   {listConfig}
               </Panel>
