@@ -8,12 +8,13 @@ import actionResponse from './structures/ActionResponse.json';
 import metadataRequest from './structures/MetadataRequest.json';
 import metadataResponse from './structures/MetadataResponse.json';
 import actionRequest from './structures/ActionRequest.json';
-import MetadataViewer from './MetadataViewer'
+import MetadataViewer from './MetadataViewer';
 
 class App extends Component {
     constructor(props){
         super(props);
         this.state = {metadata: metadataResponse};
+
     }
 
     modifyMetadata = (metadataParam) => {
@@ -28,45 +29,38 @@ class App extends Component {
     }
 
     removeConfigurationValue = (developerName) => {
-        let index = null;
-        for (var i = 0; i < this.state.metadata.configurationValues.length; i++) {
-            if(this.state.metadata.configurationValues[i].developerName == developerName) {
-                index = i+1;
-            }
-        }
-        if(index!= null) {
-            const stateCopy = update(this.state.metadata, {configurationValues: { $splice: [[0,index]]}});
-            this.setState({metadata: stateCopy});
-        }
+        let index = this.state.metadata.configurationValues.findIndex((config) => config.developerName == developerName);
+        const stateCopy = update(this.state.metadata, {configurationValues: { $splice: [[index,1]]}});
+        this.setState({metadata: stateCopy});
     }
 
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <h2>WhomiBoo</h2>
-        </div>
-        <p>This project is under active development and is not fully functional.</p>
-        <p className="App-intro">
-          <br/>
-          <Button bsStyle="primary" className="square" onClick={() => fileDownload(JSON.stringify(actionRequest, null, 2), 'MessageActionRequestProfile.json')}>
-              Message Action Request Profile (static)
-          </Button> <br/><br/>
-          <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionResponse, null, 2), 'MessageActionResponseProfile.json')}>
-              Message Action Response Profile (static)
-          </Button> <br/><br/>
-          <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(metadataRequest, null, 2), 'MetadataRequestProfile.json')}>
-              Metadata Request Profile
-          </Button><br/><br/>
-          <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(metadataResponse,null, 2), 'MetadataResponseProfile.json')}>
-              Metadata Response Profile
-          </Button>
-          <br/><br/>
-          <MetadataViewer metadata={this.modifyMetadata} response={this.state.metadata} addConfigurationValue={this.addConfigurationValue} removeConfigurationValue={this.removeConfigurationValue} />
-        </p>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="App">
+                <div className="App-header">
+                    <h2> WhomiBoo </h2>
+                </div>
+                <p>This project is under active development and is not fully functional.</p>
+                <p className="App-intro">
+                    <br/>
+                    <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionRequest, null, 2), 'MessageActionRequestProfile.json')}>
+                        Message Action Request Profile (static)
+                    </Button> <br/><br/>
+                    <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionResponse, null, 2), 'MessageActionResponseProfile.json')}>
+                        Message Action Response Profile (static)
+                    </Button> <br/><br/>
+                    <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(metadataRequest, null, 2), 'MetadataRequestProfile.json')}>
+                        Metadata Request Profile
+                    </Button><br/><br/>
+                    <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(this.state.metadata, null, 2), 'MetadataResponseProfile.json')}>
+                        Metadata Response Profile
+                    </Button>
+                    <br/><br/>
+                    <MetadataViewer metadata={this.modifyMetadata} response={this.state.metadata} addConfigurationValue={this.addConfigurationValue} removeConfigurationValue={this.removeConfigurationValue} />
+                </p>
+            </div>
+        );
+    }
 }
 
 export default App;
