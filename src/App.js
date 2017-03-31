@@ -14,7 +14,6 @@ class App extends Component {
     constructor(props){
         super(props);
         this.state = {metadata: metadataResponse};
-
     }
 
     modifyMetadata = (metadataParam) => {
@@ -33,6 +32,16 @@ class App extends Component {
         const stateCopy = update(this.state.metadata, {configurationValues: { $splice: [[index,1]]}});
         this.setState({metadata: stateCopy});
     }
+
+
+    removeType = (developerName) => {
+        let index = this.state.metadata.install.typeElements.findIndex((type) => type.developerName == developerName);
+        console.log(index);
+        const stateCopy = update(this.state.metadata.install, {typeElements: { $splice: [[index,1]]}});
+
+        //this.setState({metadata: {install: stateCopy}});
+    }
+
 
     render() {
         return (
@@ -56,7 +65,10 @@ class App extends Component {
                         Metadata Response Profile
                     </Button>
                     <br/><br/>
-                    <MetadataViewer metadata={this.modifyMetadata} response={this.state.metadata} addConfigurationValue={this.addConfigurationValue} removeConfigurationValue={this.removeConfigurationValue} />
+                    <MetadataViewer metadata={this.modifyMetadata} response={this.state.metadata}
+                                    addConfigurationValue={this.addConfigurationValue}
+                                    removeConfigurationValue={this.removeConfigurationValue}
+                                    removeType={this.removeType}/>
                 </p>
             </div>
         );
