@@ -2,17 +2,21 @@
   "name": "whomiboo",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://myname.github.io/whomiboo",
+  "homepage": "http://mynname.github.io/whomiboo",
   "dependencies": {
     "immutability-helper": "^2.1.2",
     "json-loader": "^0.5.4",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.8",
+    "react-bootstrap-table": "^3.1.6",
+    "react-copy-to-clipboard": "^4.2.3",
     "react-dom": "^15.4.2",
     "react-file-download": "^0.3.2",
-    "react-json-tree": "^0.10.7"
+    "react-json-tree": "^0.10.7",
+    "react-modal": "^1.7.3"
   },
   "devDependencies": {
+    "gh-pages": "^0.12.0",
     "react-scripts": "0.9.5"
   },
   "scripts": {

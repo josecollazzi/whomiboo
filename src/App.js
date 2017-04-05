@@ -6,14 +6,15 @@ var fileDownload = require('react-file-download');
 import update from 'immutability-helper';
 import actionResponse from './structures/ActionResponse.json';
 import metadataRequest from './structures/MetadataRequest.json';
-import metadataResponse from './structures/MetadataResponse.json';
 import actionRequest from './structures/ActionRequest.json';
-import MetadataViewer from './MetadataViewer'
+import metadataResponse from './structures/MetadataResponse.json';
+import MetadataViewer from './MetadataViewer';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 class App extends Component {
     constructor(props){
         super(props);
-        this.state = {metadata: metadataResponse};
+        this.state = {copied: false, metadata: metadataResponse};
     }
 
     modifyMetadata = (metadataParam) => {
@@ -25,48 +26,81 @@ class App extends Component {
     addConfigurationValue = (configurationValue) => {
         const stateCopy = update(this.state.metadata, {configurationValues: { $push: [configurationValue]}});
         this.setState({metadata: stateCopy});
-    }
+    };
 
-    removeConfigurationValue = (developerName) => {
-        let index = null;
-        for (var i = 0; i < this.state.metadata.configurationValues.length; i++) {
-            if(this.state.metadata.configurationValues[i].developerName == developerName) {
-                index = i+1;
-            }
-        }
-        if(index!= null) {
-            const stateCopy = update(this.state.metadata, {configurationValues: { $splice: [[0,index]]}});
+    addType = (typeElement) => {
+        if (typeElement.developerName) {
+            const stateCopy = update(this.state.metadata, {install: {typeElements: {$push: [typeElement]}}});
             this.setState({metadata: stateCopy});
         }
-    }
+    };
 
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <h2>WhomiBoo</h2>
-        </div>
-        <p>This project is under active development and is not fully functional.</p>
-        <p className="App-intro">
-          <br/>
-          <Button bsStyle="primary" className="square" onClick={() => fileDownload(JSON.stringify(actionRequest, null, 2), 'MessageActionRequestProfile.json')}>
-              Message Action Request Profile (static)
-          </Button> <br/><br/>
-          <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionResponse, null, 2), 'MessageActionResponseProfile.json')}>
-              Message Action Response Profile (static)
-          </Button> <br/><br/>
-          <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(metadataRequest, null, 2), 'MetadataRequestProfile.json')}>
-              Metadata Request Profile
-          </Button><br/><br/>
-          <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(metadataResponse,null, 2), 'MetadataResponseProfile.json')}>
-              Metadata Response Profile
-          </Button>
-          <br/><br/>
-          <MetadataViewer metadata={this.modifyMetadata} response={this.state.metadata} addConfigurationValue={this.addConfigurationValue} removeConfigurationValue={this.removeConfigurationValue} />
-        </p>
-      </div>
-    );
-  }
+    addAction = (action) => {
+        if (action) {
+            const stateCopy = update(this.state.metadata, {actions: {$push: [action]}});
+            this.setState({metadata: stateCopy});
+        }
+    };
+
+    removeConfigurationValue = (developerName) => {
+        let index = this.state.metadata.configurationValues.findIndex((config) => config.developerName == developerName);
+        const stateCopy = update(this.state.metadata, {configurationValues: { $splice: [[index,1]]}});
+        this.setState({metadata: stateCopy});
+    };
+
+
+    removeType = (developerName) => {
+        let index = this.state.metadata.install.typeElements.findIndex((type) => type.developerName == developerName);
+        const stateCopy = update(this.state.metadata, {install: {typeElements: { $splice: [[index,1]]}}});
+        this.setState({metadata: stateCopy});
+    };
+
+    removeAction = (developerName) => {
+        let index = this.state.metadata.actions.findIndex((action) => action.developerName == developerName);
+        const stateCopy = update(this.state.metadata, {actions: { $splice: [[index,1]]}});
+        this.setState({metadata: stateCopy});
+    };
+
+    render() {
+        var copied;
+
+        if(this.state.copied == true) copied = <label>(copied)</label>;
+        return (
+            <div className="App">
+                <div className="App-header">
+                    <h2> WhomiBoo </h2>
+                </div>
+                <p className="App-intro">
+                    <br/>
+                    <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionRequest, null, 2), 'MessageActionRequestProfile.json')}>
+                        Message Action Request Profile (static)
+                    </Button>
+                    <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionResponse, null, 2), 'MessageActionResponseProfile.json')}>
+                        Message Action Response Profile (static)
+                    </Button>
+                    <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(metadataRequest, null, 2), 'MetadataRequestProfile.json')}>
+                        Metadata Request Profile (example)
+                    </Button><br/><br/>
+
+                    <br/><br/>
+                    <MetadataViewer metadata={this.modifyMetadata} response={this.state.metadata}
+                                    addConfigurationValue={this.addConfigurationValue}
+                                    removeConfigurationValue={this.removeConfigurationValue}
+                                    addAction={this.addAction}
+                                    addType={this.addType}
+                                    removeType={this.removeType}
+                                    removeAction={this.removeAction}
+                    />
+
+                    <CopyToClipboard text={JSON.stringify(this.state.metadata, null, 2)} onCopy={() => this.setState({copied: true})}>
+                        <Button bsStyle="primary">Copy to Clipboard Metadata Response</Button>
+                    </CopyToClipboard>{copied}
+
+                    <br/><br/><br/><br/>
+                </p>
+            </div>
+        );
+    }
 }
 
 export default App;
