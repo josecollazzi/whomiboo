@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Panel } from 'react-bootstrap';
 import Modal from 'react-modal';
 import update from 'immutability-helper';
-import Property from './Property';
+import ConfigurationValue from './ConfigurationValue';
 
 class Type extends Component {
     constructor(props) {

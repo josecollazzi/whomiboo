@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Panel } from 'react-bootstrap';
 import Modal from 'react-modal';
 
-class Property extends Component {
+class ConfigurationValue extends Component {
     constructor(props) {
         super(props);
 
@@ -77,4 +77,4 @@ class Property extends Component {
         );
     }
 }
-export default Property;
+export default ConfigurationValue;

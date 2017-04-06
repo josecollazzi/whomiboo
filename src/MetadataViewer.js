@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Panel } from 'react-bootstrap';
-import Property from './Property';
+import ConfigurationValue from './ConfigurationValue';
 import Type from './Type';
 import Action from './Action';
 
@@ -90,7 +90,7 @@ class MetadataViewer extends Component {
                 <Panel header="List of configurationValues" bsStyle="success">
                     <Button bsStyle="success"  onClick={()=>this.setState({propertyOpen: true})}> Add a New Configuration Value </Button>
                     <div>
-                        <Property onClose={this.closePropertyModal} addConfigurationValue={this.props.addConfigurationValue} isVisible={this.state.propertyOpen}/>
+                        <ConfigurationValue onClose={this.closePropertyModal} addConfigurationValue={this.props.addConfigurationValue} isVisible={this.state.propertyOpen}/>
                     </div>
                     <br />
                     <BootstrapTable data={ this.props.response.configurationValues }  selectRow={ selectConfigurationValueRowProp }>
