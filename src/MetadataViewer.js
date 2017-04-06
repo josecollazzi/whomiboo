@@ -93,7 +93,7 @@ class MetadataViewer extends Component {
                         <ConfigurationValue onClose={this.closePropertyModal} addConfigurationValue={this.props.addConfigurationValue} isVisible={this.state.propertyOpen}/>
                     </div>
                     <br />
-                    <BootstrapTable data={ this.props.response.configurationValues }  selectRow={ selectConfigurationValueRowProp }>
+                    <BootstrapTable className="default-table-with" data={ this.props.response.configurationValues }  selectRow={ selectConfigurationValueRowProp }>
                       <TableHeaderColumn dataField='developerName' isKey={ true } dataAlign='center'> developerName </TableHeaderColumn>
                       <TableHeaderColumn dataField='contentType' dataAlign='center'> contentType </TableHeaderColumn>
                     </BootstrapTable>
@@ -110,7 +110,7 @@ class MetadataViewer extends Component {
                     </div>
                     <br />
 
-                    <BootstrapTable data={ this.props.response.install.typeElements }  selectRow={ selectTypeRowProp }>
+                    <BootstrapTable className="default-table-with" data={ this.props.response.install.typeElements }  selectRow={ selectTypeRowProp }>
                         <TableHeaderColumn dataField='developerName' isKey={ true } dataAlign='center'> developerName </TableHeaderColumn>
                         <TableHeaderColumn dataField='developerSummary' dataAlign='center'> developerSummary </TableHeaderColumn>
                         <TableHeaderColumn dataField='properties' dataFormat={ this.inOutPuts }> properties </TableHeaderColumn>
@@ -126,7 +126,7 @@ class MetadataViewer extends Component {
                         <Action onClose={this.closeActionModal} objects={this.props.response.install.typeElements} addAction={this.props.addAction} isVisible={this.state.actionOpen}/>
                     </div>
                     <br/>
-                    <BootstrapTable data={ this.props.response.actions }  selectRow={ selectActionRowProp }>
+                    <BootstrapTable className="default-table-with" data={ this.props.response.actions }  selectRow={ selectActionRowProp }>
                         <TableHeaderColumn dataField='uriPart' dataAlign='center'> uriPart </TableHeaderColumn>
                         <TableHeaderColumn dataField='developerName' isKey={ true } dataAlign='center'> developerName </TableHeaderColumn>
                         <TableHeaderColumn dataField='developerSummary' dataAlign='center'> developerSummary </TableHeaderColumn>
