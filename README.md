@@ -3,7 +3,7 @@
 This App is a ManyWho Service Descriptor
 This project is under active development and is not fully functional.
 
-[Run this app](https://josecollazzi.github.io/whomiboo/)
+[Run this app](https://manywho.github.io/whomiboo/)
 
 ## Common Tasks
 

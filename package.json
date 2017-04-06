@@ -2,7 +2,7 @@
   "name": "whomiboo",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://mynname.github.io/whomiboo",
+  "homepage": "http://orgname.github.io/whomiboo",
   "dependencies": {
     "immutability-helper": "^2.1.2",
     "json-loader": "^0.5.4",
