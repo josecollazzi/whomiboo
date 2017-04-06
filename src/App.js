@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 {/**import JSONTree from 'react-json-tree';**/}
-import { Button, Panel } from 'react-bootstrap';
+import { Button, Panel, Grid, Row, Col } from 'react-bootstrap';
 var fileDownload = require('react-file-download');
 import update from 'immutability-helper';
 import actionResponse from './structures/ActionResponse.json';
@@ -70,19 +70,26 @@ class App extends Component {
                 <div className="App-header">
                     <h2> WhomiBoo </h2>
                 </div>
-                <p className="App-intro">
-                    <br/>
-                    <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionRequest, null, 2), 'MessageActionRequestProfile.json')}>
-                        Message Action Request Profile (static)
-                    </Button>
-                    <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionResponse, null, 2), 'MessageActionResponseProfile.json')}>
-                        Message Action Response Profile (static)
-                    </Button>
-                    <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(metadataRequest, null, 2), 'MetadataRequestProfile.json')}>
-                        Metadata Request Profile (example)
-                    </Button><br/><br/>
-
-                    <br/><br/>
+                <div>
+                    <Grid className="download-container">
+                        <Row>
+                            <Col xs={6} md={4}>
+                                <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionRequest, null, 2), 'MessageActionRequestProfile.json')}>
+                                    Message Action Request Profile (static)
+                                </Button>
+                            </Col>
+                            <Col xs={6} md={4}>
+                                <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionResponse, null, 2), 'MessageActionResponseProfile.json')}>
+                                    Message Action Response Profile (static)
+                                </Button>
+                            </Col>
+                            <Col xs={6} md={4}>
+                                <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(metadataRequest, null, 2), 'MetadataRequestProfile.json')}>
+                                    Metadata Request Profile (example)
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Grid>
                     <MetadataViewer metadata={this.modifyMetadata} response={this.state.metadata}
                                     addConfigurationValue={this.addConfigurationValue}
                                     removeConfigurationValue={this.removeConfigurationValue}
@@ -97,7 +104,7 @@ class App extends Component {
                     </CopyToClipboard>{copied}
 
                     <br/><br/><br/><br/>
-                </p>
+                </div>
             </div>
         );
     }
