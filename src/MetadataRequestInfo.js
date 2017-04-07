@@ -31,7 +31,9 @@ class MetadataRequestInfo extends Component {
                     <p>
                         ManyWho require a entry-point whith URL &#123;your Boomi API base URL&#125;/metadata,<br/>
                         In very specifics scenarios it is needed to sent information in the request to create the metadata <br/>
-                        because it need it to be created dynamically, this file is an example of how it will look like.<br/>
+                        because it need it to be created dynamically, this file is an example of how it will look like.
+                    </p>
+                    <p>
                         In most of the scenarios to support an empty json object it will be enough.
                     </p>
                 </Panel>
