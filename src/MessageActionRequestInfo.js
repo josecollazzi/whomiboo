@@ -20,15 +20,20 @@ class MessageActionRequestInfo extends Component {
         };
 
         return (
-
             <Modal
                 isOpen={this.props.isVisible}
                 onRequestClose={()=> this.props.closeModal()}
                 style={customStyles}
-                contentLabel="Example Modal"
+                contentLabel="Metadata Response"
             >
-                <h1>Info about action request</h1>
-                <br/><br/><br/>
+                <Panel header="Metadata Response" bsStyle="primary">
+                    <p>
+                        The structure for a Message Action Request it always the same, what it change is the data.<br/>
+                    </p>
+                    <p>
+                        This file can be used as profile for all the Message Action entry-points.
+                    </p>
+                </Panel>
                 <Button bsStyle="success" onClick={()=>this.props.onClose()}> Close </Button>
             </Modal>
         );

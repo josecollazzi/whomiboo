@@ -25,10 +25,16 @@ class MessageActionResponseInfo extends Component {
                 isOpen={this.props.isVisible}
                 onRequestClose={()=> this.props.closeModal()}
                 style={customStyles}
-                contentLabel="Example Modal"
+                contentLabel="Message Action Response"
             >
-                <h1>Info about action request</h1>
-                <br/><br/><br/>
+                <Panel header="Mesage Action Response" bsStyle="primary">
+                    <p>
+                        The structure for a Message Action Response it always the same, what it change is the data.<br/>
+                    </p>
+                    <p>
+                        This file can be used as profile for all the entry-points Message Action Responses.
+                    </p>
+                </Panel>
                 <Button bsStyle="success" onClick={()=>this.props.onClose()}> Close </Button>
             </Modal>
         );
