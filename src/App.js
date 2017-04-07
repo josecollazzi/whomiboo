@@ -156,7 +156,7 @@ class App extends Component {
                                 <Button bsStyle="primary" onClick={()=> this.setState({openExceptionResponseInfo:true})}>
                                     <Glyphicon glyph="question-sign" />
                                 </Button>
-                                <Button className="button-default-size" bsStyle="primary" onClick={() => fileDownload(JSON.stringify(exceptionResponse, null, 2), 'ExceptionResponse.json')}>
+                                <Button className="button-default-size" bsStyle="primary" onClick={() => fileDownload(JSON.stringify(exceptionResponse, null, 2), 'ExceptionResponseProfile.json')}>
                                     Exception
                                 </Button>
                             </Col>
@@ -172,6 +172,9 @@ class App extends Component {
                     />
                     <Button bsStyle="primary" onClick={()=> this.setState({openMetadataResponseInfo:true})}>
                         <Glyphicon glyph="question-sign" />
+                    </Button>
+                    <Button className="button-default-size" bsStyle="primary" onClick={() => fileDownload(JSON.stringify(this.state.metadata, null, 2), 'MetadataResponseProfile.json')}>
+                        Metadata Response
                     </Button>
                     <CopyToClipboard text={JSON.stringify(this.state.metadata, null, 2)} onCopy={() => this.setState({copied: true})}>
                         <Button bsStyle="primary">Copy to Clipboard Metadata Response</Button>

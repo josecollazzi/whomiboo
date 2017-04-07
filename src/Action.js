@@ -173,7 +173,7 @@ class Action extends Component {
                 {inputs}
                 <label>Outputs</label><br/>
                 {outputs}
-                <br/>   
+                <br/>
 
                 <select value={this.state.newPropertyRequired} onChange={this.handlePropertyRequiredChange}>
                     <option value="required">Is required</option>
