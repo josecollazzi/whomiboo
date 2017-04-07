@@ -29,10 +29,10 @@ class MessageActionResponseInfo extends Component {
             >
                 <Panel header="Mesage Action Response" bsStyle="primary">
                     <p>
-                        The structure for a Message Action Response it always the same, what it change is the data.<br/>
+                        The structure for a Message Action Response it is always the same, what it change is the data.<br/>
                     </p>
                     <p>
-                        This file can be used as profile for all the entry-points Message Action Responses.
+                        This file can be used as profile for all the Message Action Responses entry-points.
                     </p>
                 </Panel>
                 <Button bsStyle="success" onClick={()=>this.props.onClose()}> Close </Button>

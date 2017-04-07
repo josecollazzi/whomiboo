@@ -28,10 +28,10 @@ class MessageActionRequestInfo extends Component {
             >
                 <Panel header="Metadata Response" bsStyle="primary">
                     <p>
-                        The structure for a Message Action Request it always the same, what it change is the data.<br/>
+                        The structure for a Message Action Request it is always the same, what it change is the data.<br/>
                     </p>
                     <p>
-                        This file can be used as profile for all the Message Action entry-points.
+                        This file can be used as profile for all the Message Action request entry-points.
                     </p>
                 </Panel>
                 <Button bsStyle="success" onClick={()=>this.props.onClose()}> Close </Button>
