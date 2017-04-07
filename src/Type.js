@@ -104,7 +104,9 @@ class Type extends Component {
                     <label>Type Name</label><br/>
                     <input value={this.state.type.developerName} onChange={this.handleTypeName}/><br />
                     <label>Type Summary</label><br/>
-                    <input value={this.state.type.developerSummary} onChange={this.handleTypeSummary}/><br /><br/>
+                    <input value={this.state.type.developerSummary} onChange={this.handleTypeSummary}/><br />
+                    <label>Properties of the Type</label>
+                    {listProperties} <br/>
                     <label>Property Name</label><br/>
                     <input value={this.state.newPropertyName} onChange={this.handlePropertyName}/><br />
                     <label>Property ContentType</label><br/>
@@ -115,8 +117,8 @@ class Type extends Component {
                         <option value="ContentDateTime">ContentDateTime</option>
                     </select>
                 </form><br/>
-                {listProperties}
-                <button onClick={this.addProperty}> Create Property </button>
+
+                <button onClick={this.addProperty}> Create Property </button><br/><br/>
                 <Button bsStyle="success" onClick={this.closeModal}> Create Type </Button>
             </Modal>
         );
