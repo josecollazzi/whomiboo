@@ -39,3 +39,11 @@
   color: #c9c9c9;
   margin-top: 20px;
 }
+
+.button-default-size{
+  width: 200px;
+}
+
+.button-long-size{
+  width: 300px;
+}

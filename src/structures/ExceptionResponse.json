@@ -1,0 +1,10 @@
+{
+    "invokeType": null,
+    "responseBody": null,
+    "responseHeaders": null,
+    "kind": "service",
+    "action": null,
+    "message": "Validation errors occurred: {MyObject=A MyObject must be provided when Executing Action X}, ",
+    "uri": "/action-entry-point",
+    "statusCode": 400
+}

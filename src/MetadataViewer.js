@@ -88,7 +88,7 @@ class MetadataViewer extends Component {
         return (
             <div>
                 <Panel header="List of configurationValues" bsStyle="success">
-                    <Button bsStyle="success"  onClick={()=>this.setState({propertyOpen: true})}> Add a New Configuration Value </Button>
+                    <Button className="button-long-size" bsStyle="success"  onClick={()=>this.setState({propertyOpen: true})}> Add a New Configuration Value </Button>
                     <div>
                         <ConfigurationValue onClose={this.closePropertyModal} addConfigurationValue={this.props.addConfigurationValue} isVisible={this.state.propertyOpen}/>
                     </div>
@@ -98,13 +98,13 @@ class MetadataViewer extends Component {
                       <TableHeaderColumn dataField='contentType' dataAlign='center'> contentType </TableHeaderColumn>
                     </BootstrapTable>
 
-                    <Button bsStyle="danger" onClick={(e)=>this.handleClickForRemoveConfigValue()}>
+                    <Button className="button-long-size" bsStyle="danger" onClick={(e)=>this.handleClickForRemoveConfigValue()}>
                       Remove Selected ConfigurationValue
                     </Button>
 
                 </Panel>
                 <Panel header="List of types" bsStyle="success">
-                    <Button bsStyle="success"  onClick={()=>this.setState({typeOpen: true})}> Add a new Type </Button>
+                    <Button className="button-long-size" bsStyle="success"  onClick={()=>this.setState({typeOpen: true})}> Add a new Type </Button>
                     <div>
                         <Type onClose={this.closeTypeModal} addType={this.props.addType} isVisible={this.state.typeOpen}/>
                     </div>
@@ -116,12 +116,12 @@ class MetadataViewer extends Component {
                         <TableHeaderColumn dataField='properties' dataFormat={ this.inOutPuts }> properties </TableHeaderColumn>
                     </BootstrapTable>
 
-                    <Button bsStyle="danger" onClick={(e)=>this.handleClickForRemoveType()}>
+                    <Button className="button-long-size" bsStyle="danger" onClick={(e)=>this.handleClickForRemoveType()}>
                         Remove Selected Type
                     </Button>
                 </Panel>
                 <Panel header="List of actions" bsStyle="success">
-                    <Button bsStyle="success" onClick={()=>this.setState({actionOpen: true})}> Add Message Action </Button>
+                    <Button  className="button-long-size" bsStyle="success" onClick={()=>this.setState({actionOpen: true})}> Add Message Action </Button>
                     <div>
                         <Action onClose={this.closeActionModal} objects={this.props.response.install.typeElements} addAction={this.props.addAction} isVisible={this.state.actionOpen}/>
                     </div>
@@ -133,7 +133,7 @@ class MetadataViewer extends Component {
                         <TableHeaderColumn dataField='serviceInputs' dataFormat={ this.inOutPuts }> serviceInputs </TableHeaderColumn>
                         <TableHeaderColumn dataField='serviceOutputs' dataFormat={ this.inOutPuts }> serviceOutputs </TableHeaderColumn>
                     </BootstrapTable>
-                    <Button bsStyle="danger" onClick={(e)=>this.handleClickForRemoveAction()}>
+                    <Button className="button-long-size" bsStyle="danger" onClick={(e)=>this.handleClickForRemoveAction()}>
                           Remove Selected Action
                     </Button>
                 </Panel>

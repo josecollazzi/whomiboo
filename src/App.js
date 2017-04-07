@@ -8,14 +8,17 @@ import update from 'immutability-helper';
 import actionResponse from './structures/ActionResponse.json';
 import metadataRequest from './structures/MetadataRequest.json';
 import actionRequest from './structures/ActionRequest.json';
+import exceptionResponse from './structures/ExceptionResponse.json';
 import metadataResponse from './structures/MetadataResponse.json';
 import MetadataViewer from './MetadataViewer';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+
 import MessageActionRequestInfo from './MessageActionRequestInfo';
 import MessageActionResponseInfo from './MessageActionResponseInfo';
 import MetadataRequestInfo from './MetadataRequestInfo';
 import MetadataResponseInfo from './MetadataResponseInfo';
+import ExceptionResponseInfo from './ExceptionResponseInfo';
 
 class App extends Component {
     constructor(props){
@@ -25,6 +28,7 @@ class App extends Component {
             openActionResponseInfo: false,
             openMetadataResponseInfo: false,
             openMetadataRequestInfo: false,
+            openExceptionResponseInfo: false,
             openMetadataInfo: false,
             copied: false,
             metadata: metadataResponse,
@@ -72,6 +76,10 @@ class App extends Component {
         this.setState({openMetadataResponseInfo: false})
     };
 
+    closeExceptionResponseInfo = () => {
+        this.setState({openExceptionResponseInfo: false})
+    };
+
     removeConfigurationValue = (developerName) => {
         let index = this.state.metadata.configurationValues.findIndex((config) => config.developerName == developerName);
         const stateCopy = update(this.state.metadata, {configurationValues: { $splice: [[index,1]]}});
@@ -116,31 +124,40 @@ class App extends Component {
                     <MessageActionResponseInfo isVisible={this.state.openActionResponseInfo} onClose={this.closeActionResponseInfo}/>
                     <MetadataRequestInfo isVisible={this.state.openMetadataRequestInfo} onClose={this.closeMetadataRequestInfo}/>
                     <MetadataResponseInfo isVisible={this.state.openMetadataResponseInfo} onClose={this.closeMetadataResponseInfo}/>
+                    <ExceptionResponseInfo isVisible={this.state.openExceptionResponseInfo} onClose={this.closeExceptionResponseInfo}/>
 
                     <Grid className="download-container">
                         <Row>
-                            <Col xs={6} md={4}>
+                            <Col xs={3} md={3}>
                                 <Button bsStyle="primary" onClick={()=> this.setState({openActionRequestInfo:true})}>
                                     <Glyphicon glyph="question-sign" />
                                 </Button>
-                                <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionRequest, null, 2), 'MessageActionRequestProfile.json')}>
-                                    Message Action Request Profile (static)
+                                <Button className="button-default-size" bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionRequest, null, 2), 'MessageActionRequestProfile.json')}>
+                                    Message Action Request
                                 </Button>
                             </Col>
-                            <Col xs={6} md={4}>
+                            <Col xs={3} md={3}>
                                 <Button bsStyle="primary" onClick={()=> this.setState({openActionResponseInfo:true})}>
                                     <Glyphicon glyph="question-sign" />
                                 </Button>
-                                <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionResponse, null, 2), 'MessageActionResponseProfile.json')}>
-                                    Message Action Response Profile (static)
+                                <Button className="button-default-size" bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionResponse, null, 2), 'MessageActionResponseProfile.json')}>
+                                    Message Action Response
                                 </Button>
                             </Col>
-                            <Col xs={6} md={4}>
+                            <Col xs={3} md={3}>
                                 <Button bsStyle="primary" onClick={()=> this.setState({openMetadataRequestInfo:true})}>
                                     <Glyphicon glyph="question-sign" />
                                 </Button>
-                                <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(metadataRequest, null, 2), 'MetadataRequestProfile.json')}>
-                                    Metadata Request Profile (example)
+                                <Button className="button-default-size" bsStyle="primary" onClick={() => fileDownload(JSON.stringify(metadataRequest, null, 2), 'MetadataRequestProfile.json')}>
+                                    Metadata Request
+                                </Button>
+                            </Col>
+                            <Col xs={3} md={3}>
+                                <Button bsStyle="primary" onClick={()=> this.setState({openExceptionResponseInfo:true})}>
+                                    <Glyphicon glyph="question-sign" />
+                                </Button>
+                                <Button className="button-default-size" bsStyle="primary" onClick={() => fileDownload(JSON.stringify(exceptionResponse, null, 2), 'ExceptionResponse.json')}>
+                                    Exception
                                 </Button>
                             </Col>
                         </Row>
