@@ -166,8 +166,14 @@ class Action extends Component {
                 <label>Action Name</label><br/>
                 <input value={this.state.action.developerName} onChange={this.handleActionNameChange}/><br />
                 <label>Action Summary</label><br/>
-                <input value={this.state.action.developerSummary} onChange={this.handleActionDeveloperSummaryChange}/><br />
+                <input value={this.state.action.developerSummary} onChange={this.handleActionDeveloperSummaryChange}/>
+                <br />
                 <br/>
+                <label>Inputs</label><br/>
+                {inputs}
+                <label>Outputs</label><br/>
+                {outputs}
+                <br/>   
 
                 <select value={this.state.newPropertyRequired} onChange={this.handlePropertyRequiredChange}>
                     <option value="required">Is required</option>
@@ -183,18 +189,11 @@ class Action extends Component {
                     <option value="ContentPassword">ContentPassword</option>
                     <option value="ContentDateTime">ContentDateTime</option>
                     <option value="Object">Object</option>
-                </select><br/>
+                </select>
                 {objectType}
-
-                <br/><br/>
-
-                <label>Inputs</label>
-                {inputs}
-                <label>Outputs</label>
-                {outputs}
                 <br/>
                 <button onClick={this.addPropertyInput}> Create Input </button>
-                <button onClick={this.addPropertyOutput}> Create Output </button><br />
+                <button onClick={this.addPropertyOutput}> Create Output </button><br /><br />
                 <Button bsStyle="success" onClick={this.closeModal}> Create Action </Button><br />
             </Modal>
         );
