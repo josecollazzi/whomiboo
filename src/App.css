@@ -9,9 +9,9 @@
 
 .App-header {
   background-color: #222;
-  height: 120px;
+  height: 180px;
   padding: 20px;
-  color: 	#008B8B;
+  color: #8abecc;
 }
 
 .App-intro {
@@ -33,4 +33,9 @@
   margin-left: 10%;
   margin-top: 30px;
   margin-bottom: 30px;
+}
+
+.white-subtitle {
+  color: #c9c9c9;
+  margin-top: 20px;
 }

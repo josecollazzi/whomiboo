@@ -12,11 +12,23 @@ import metadataResponse from './structures/MetadataResponse.json';
 import MetadataViewer from './MetadataViewer';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+import MessageActionRequestInfo from './MessageActionRequestInfo';
+import MessageActionResponseInfo from './MessageActionResponseInfo';
+import MetadataRequestInfo from './MetadataRequestInfo';
+import MetadataResponseInfo from './MetadataResponseInfo';
 
 class App extends Component {
     constructor(props){
         super(props);
-        this.state = {copied: false, metadata: metadataResponse};
+        this.state = {
+            openActionRequestInfo: false,
+            openActionResponseInfo: false,
+            openMetadataResponseInfo: false,
+            openMetadataRequestInfo: false,
+            openMetadataInfo: false,
+            copied: false,
+            metadata: metadataResponse,
+        };
     }
 
     modifyMetadata = (metadataParam) => {
@@ -42,6 +54,22 @@ class App extends Component {
             const stateCopy = update(this.state.metadata, {actions: {$push: [action]}});
             this.setState({metadata: stateCopy});
         }
+    };
+
+    closeActionRequestInfo = () => {
+        this.setState({openActionRequestInfo: false})
+    };
+
+    closeActionResponseInfo = () => {
+        this.setState({openActionResponseInfo: false})
+    };
+
+    closeMetadataRequestInfo = () => {
+        this.setState({openMetadataRequestInfo: false})
+    };
+
+    closeMetadataResponseInfo = () => {
+        this.setState({openMetadataResponseInfo: false})
     };
 
     removeConfigurationValue = (developerName) => {
@@ -70,25 +98,47 @@ class App extends Component {
         return (
             <div className="App">
                 <div className="App-header">
-                    <h2> WhomiBoo </h2>
+                    <Grid className="download-container">
+                        <Row>
+                            <Col xs={4} md={6}>
+                                <h2> WhomiBoo </h2>
+                            </Col>
+                            <Col xs={4} md={6}>
+                                <h5 className="white-subtitle"> This application help you to create the JSON files needed to allow Boomi and ManyWho to work
+                                    together without knowledge of JSON. Even if you know how to create the files manually it can
+                                    help you to check that your files are right</h5>
+                            </Col>
+                        </Row>
+                    </Grid>
                 </div>
                 <div>
+                    <MessageActionRequestInfo isVisible={this.state.openActionRequestInfo} onClose={this.closeActionRequestInfo}/>
+                    <MessageActionResponseInfo isVisible={this.state.openActionResponseInfo} onClose={this.closeActionResponseInfo}/>
+                    <MetadataRequestInfo isVisible={this.state.openMetadataRequestInfo} onClose={this.closeMetadataRequestInfo}/>
+                    <MetadataResponseInfo isVisible={this.state.openMetadataResponseInfo} onClose={this.closeMetadataResponseInfo}/>
+
                     <Grid className="download-container">
                         <Row>
                             <Col xs={6} md={4}>
-                                <Button bsStyle="primary" ><Glyphicon glyph="question-sign" /></Button>
+                                <Button bsStyle="primary" onClick={()=> this.setState({openActionRequestInfo:true})}>
+                                    <Glyphicon glyph="question-sign" />
+                                </Button>
                                 <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionRequest, null, 2), 'MessageActionRequestProfile.json')}>
                                     Message Action Request Profile (static)
                                 </Button>
                             </Col>
                             <Col xs={6} md={4}>
-                                <Button bsStyle="primary" ><Glyphicon glyph="question-sign" /></Button>
+                                <Button bsStyle="primary" onClick={()=> this.setState({openActionResponseInfo:true})}>
+                                    <Glyphicon glyph="question-sign" />
+                                </Button>
                                 <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionResponse, null, 2), 'MessageActionResponseProfile.json')}>
                                     Message Action Response Profile (static)
                                 </Button>
                             </Col>
                             <Col xs={6} md={4}>
-                                <Button bsStyle="primary" ><Glyphicon glyph="question-sign" /></Button>
+                                <Button bsStyle="primary" onClick={()=> this.setState({openMetadataRequestInfo:true})}>
+                                    <Glyphicon glyph="question-sign" />
+                                </Button>
                                 <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(metadataRequest, null, 2), 'MetadataRequestProfile.json')}>
                                     Metadata Request Profile (example)
                                 </Button>
@@ -103,8 +153,9 @@ class App extends Component {
                                     removeType={this.removeType}
                                     removeAction={this.removeAction}
                     />
-                    <Button bsStyle="primary" ><Glyphicon glyph="question-sign" /></Button>
-
+                    <Button bsStyle="primary" onClick={()=> this.setState({openMetadataResponseInfo:true})}>
+                        <Glyphicon glyph="question-sign" />
+                    </Button>
                     <CopyToClipboard text={JSON.stringify(this.state.metadata, null, 2)} onCopy={() => this.setState({copied: true})}>
                         <Button bsStyle="primary">Copy to Clipboard Metadata Response</Button>
                     </CopyToClipboard>{copied}
