@@ -28,11 +28,6 @@
   margin-bottom: 50px;
 }
 
-.react-bs-table table{
-  margin-bottom: 0;
-  table-layout: auto;
-}
-
 .default-table-with {
   width: 80%;
   margin-left: 10%;

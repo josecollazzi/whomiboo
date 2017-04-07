@@ -117,7 +117,7 @@ class Type extends Component {
                 </form><br/>
                 {listProperties}
                 <button onClick={this.addProperty}> Create Property </button>
-                <button onClick={this.closeModal}> Create Type </button>
+                <Button bsStyle="success" onClick={this.closeModal}> Create Type </Button>
             </Modal>
         );
     }

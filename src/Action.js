@@ -195,7 +195,7 @@ class Action extends Component {
                 <br/>
                 <button onClick={this.addPropertyInput}> Create Input </button>
                 <button onClick={this.addPropertyOutput}> Create Output </button><br />
-                <button onClick={this.closeModal}> Create Action </button><br />
+                <Button bsStyle="success" onClick={this.closeModal}> Create Action </Button><br />
             </Modal>
         );
     }

@@ -72,7 +72,7 @@ class ConfigurationValue extends Component {
                         <option value="ContentDateTime">ContentDateTime</option>
                     </select>
                 </form><br/><br/><br/>
-                <button onClick={this.closeModal}> Create </button>
+                <Button bsStyle="success" onClick={this.closeModal}> Create </Button>
             </Modal>
         );
     }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+
 {/**import JSONTree from 'react-json-tree';**/}
-import { Button, Panel, Grid, Row, Col } from 'react-bootstrap';
+import { Button, Panel, Grid, Row, Col, Glyphicon } from 'react-bootstrap';
 var fileDownload = require('react-file-download');
 import update from 'immutability-helper';
 import actionResponse from './structures/ActionResponse.json';
@@ -10,6 +11,7 @@ import actionRequest from './structures/ActionRequest.json';
 import metadataResponse from './structures/MetadataResponse.json';
 import MetadataViewer from './MetadataViewer';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 class App extends Component {
     constructor(props){
@@ -74,16 +76,19 @@ class App extends Component {
                     <Grid className="download-container">
                         <Row>
                             <Col xs={6} md={4}>
+                                <Button bsStyle="primary" ><Glyphicon glyph="question-sign" /></Button>
                                 <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionRequest, null, 2), 'MessageActionRequestProfile.json')}>
                                     Message Action Request Profile (static)
                                 </Button>
                             </Col>
                             <Col xs={6} md={4}>
+                                <Button bsStyle="primary" ><Glyphicon glyph="question-sign" /></Button>
                                 <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(actionResponse, null, 2), 'MessageActionResponseProfile.json')}>
                                     Message Action Response Profile (static)
                                 </Button>
                             </Col>
                             <Col xs={6} md={4}>
+                                <Button bsStyle="primary" ><Glyphicon glyph="question-sign" /></Button>
                                 <Button bsStyle="primary" onClick={() => fileDownload(JSON.stringify(metadataRequest, null, 2), 'MetadataRequestProfile.json')}>
                                     Metadata Request Profile (example)
                                 </Button>
@@ -98,6 +103,7 @@ class App extends Component {
                                     removeType={this.removeType}
                                     removeAction={this.removeAction}
                     />
+                    <Button bsStyle="primary" ><Glyphicon glyph="question-sign" /></Button>
 
                     <CopyToClipboard text={JSON.stringify(this.state.metadata, null, 2)} onCopy={() => this.setState({copied: true})}>
                         <Button bsStyle="primary">Copy to Clipboard Metadata Response</Button>

@@ -33,7 +33,14 @@
         "contentType": "ContentString",
         "objectData": null
     }],
-    "outcomes": null,
+    "outcomes": [
+        {
+            "id": "fb6ba83a-4ba8-4d77-bd71-19ad31a451e6",
+            "developerName": "1",
+            "label": "1",
+            "order": 0
+        }
+    ],
     "token": "mock-token",
     "tenantId": "mock-tenant-id",
     "stateId": "374538e8-1ee8-4e41-be5a-0e87ed30271a",
