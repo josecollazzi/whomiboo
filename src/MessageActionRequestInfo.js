@@ -15,7 +15,8 @@ class MessageActionRequestInfo extends Component {
                 right                 : 'auto',
                 bottom                : 'auto',
                 marginRight           : '-50%',
-                transform             : 'translate(-50%, -50%)'
+                transform             : 'translate(-50%, -50%)',
+                maxWidth              : '50%'
             }
         };
 
@@ -24,14 +25,14 @@ class MessageActionRequestInfo extends Component {
                 isOpen={this.props.isVisible}
                 onRequestClose={()=> this.props.closeModal()}
                 style={customStyles}
-                contentLabel="Metadata Response"
+                contentLabel="Message Action Request"
             >
-                <Panel header="Metadata Response" bsStyle="primary">
+                <Panel header="Message Action Request" bsStyle="primary">
                     <p>
-                        The structure for a Message Action Request it is always the same, what it change is the data.<br/>
+                        The structure for a Message Action Request is always the same; the only thing that changes is the data.
                     </p>
                     <p>
-                        This file can be used as profile for all the Message Action request entry-points.
+                        This file can be used as a profile for all the Message Action request entrypoints.
                     </p>
                 </Panel>
                 <Button bsStyle="success" onClick={()=>this.props.onClose()}> Close </Button>

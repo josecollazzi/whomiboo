@@ -15,7 +15,8 @@ class MessageActionResponseInfo extends Component {
                 right                 : 'auto',
                 bottom                : 'auto',
                 marginRight           : '-50%',
-                transform             : 'translate(-50%, -50%)'
+                transform             : 'translate(-50%, -50%)',
+                maxWidth              : '50%'
             }
         };
 
@@ -29,10 +30,10 @@ class MessageActionResponseInfo extends Component {
             >
                 <Panel header="Mesage Action Response" bsStyle="primary">
                     <p>
-                        The structure for a Message Action Response it is always the same, what it change is the data.<br/>
+                        The structure for a Message Action Response is always the same; the only thing that changes is the data.
                     </p>
                     <p>
-                        This file can be used as profile for all the Message Action Responses entry-points.
+                        This file can be used as a profile for all the Message Action Responses entrypoints.
                     </p>
                 </Panel>
                 <Button bsStyle="success" onClick={()=>this.props.onClose()}> Close </Button>

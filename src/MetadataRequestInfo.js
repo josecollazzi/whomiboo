@@ -15,7 +15,8 @@ class MetadataRequestInfo extends Component {
                 right                 : 'auto',
                 bottom                : 'auto',
                 marginRight           : '-50%',
-                transform             : 'translate(-50%, -50%)'
+                transform             : 'translate(-50%, -50%)',
+                maxWidth              : '50%'
             }
         };
 
@@ -29,12 +30,13 @@ class MetadataRequestInfo extends Component {
             >
                 <Panel header="Metadata Request" bsStyle="primary">
                     <p>
-                        ManyWho require a entry-point whith URL &#123;your Boomi API base URL&#125;/metadata,<br/>
-                        In very specifics scenarios it is needed to sent information in the request to create the metadata <br/>
-                        because it need it to be created dynamically, this file is an example of how it will look like.
+                        ManyWho requires an entrypoint at the URL <code>&#123;your Boomi API base URL&#125;/metadata</code>.
                     </p>
                     <p>
-                        In most of the scenarios to support an empty json object it will be enough.
+                        In certain scenarios, data in the request is needed in order to dynamically create the metadata - this file is an example of what that would look like.
+                    </p>
+                    <p>
+                        Most of the time, an empty JSON object is all that's needed to create metadata.
                     </p>
                 </Panel>
                 <Button bsStyle="success" onClick={()=>this.props.onClose()}> Close </Button>

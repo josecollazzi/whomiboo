@@ -15,7 +15,8 @@ class MetadataResponseInfo extends Component {
                 right                 : 'auto',
                 bottom                : 'auto',
                 marginRight           : '-50%',
-                transform             : 'translate(-50%, -50%)'
+                transform             : 'translate(-50%, -50%)',
+                maxWidth              : '50%'
             }
         };
 
@@ -29,25 +30,25 @@ class MetadataResponseInfo extends Component {
             >
                 <Panel header="Metadata Response" bsStyle="primary">
                     <p>
-                        ManyWho require an entry-point &#123;your Boomi API base URL&#125;/metadata, this entry point<br />
-                        have to consume and produce application/json content, also the json object have to be defined <br/>
-                        with a very specific structure, and it have to expose all the information required to allow <br/>
-                        ManyWho to connect to the Boomi API entry-points.
+                        ManyWho requires an entrypoint at the URL <code>&#123;your Boomi API base URL&#125;/metadata</code>.
+                        This entrypoint will consume and produce <code>application/json</code> with a specifically
+                        defined JSON structure, and has to expose all the information required to allow ManyWho to
+                        connect to the Boomi API entrypoints.
                     </p>
                     <p>
-                        The information required are ConfigurationValues, Types and Actions. <br/>
-                        You have configure this information in the sections above.
+                        The response should include Configuration Values, Types and Actions (which you've configured in the sections above).
                     </p>
                     <p>
-                        Once you have your new entry point &#123;your Boomi API base URL&#125;/metadata in Boomi,<br/>
-                        and you have finished the metadata using this app. Copy it to the clipboard using the button. <br/>
-                        In Boomi create a new Message Shape and paste what you have in the clipboard to be responded.<br/>
-                        (remember to add <b>&#39;</b> at the beginning and end of your json object )
+                        Once you have your new entrypoint (<code>&#123;your Boomi API base URL&#125;/metadata</code>) in
+                        Boomi, and you have finished constructing the metadata using this app, copy it to the clipboard
+                        using the button. In Boomi, create a new Message Shape and paste what you have in the clipboard
+                        (remember to add <code>&#39;</code> at the beginning and end of your JSON object)
                     </p>
-                    <p>At this point you will be able to install your ManyWho service built using Boomi. <br/>
-                        The URL of the services will be &#123;your Boomi API base URL&#125;
+                    <p>
+                        At this point you will be able to install your service built using Boomi inside ManyWho, using the
+                        URL <code>&#123;your Boomi API base URL&#125;</code>.
                     </p>
-                    <p>Your next step will be to create the entry point for your Message Actions</p>
+                    <p>The next step is to create the entrypoint for your Message Actions.</p>
                 </Panel>
                 <Button bsStyle="success" onClick={()=>this.props.onClose()}> Close </Button>
             </Modal>
