@@ -115,6 +115,7 @@ class App extends Component {
                                 <h5 className="white-subtitle"> This application help you to create the JSON files needed to allow Boomi and ManyWho to work
                                     together without knowledge of JSON. Even if you know how to create the files manually it can
                                     help you to check that your files are right</h5>
+                                <a href="https://github.com/manywho/whomiboo">Code of this app</a>
                             </Col>
                         </Row>
                     </Grid>
