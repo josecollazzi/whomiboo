@@ -13,6 +13,7 @@ import metadataResponse from './structures/MetadataResponse.json';
 import MetadataViewer from './MetadataViewer';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 import MessageActionRequestInfo from './MessageActionRequestInfo';
 import MessageActionResponseInfo from './MessageActionResponseInfo';
@@ -109,7 +110,7 @@ class App extends Component {
                     <Grid className="download-container">
                         <Row>
                             <Col xs={4} md={6}>
-                                <h2> WhomiBoo </h2>
+                                <h1> WhomiBoo </h1>
                             </Col>
                             <Col xs={4} md={6}>
                                 <h5 className="white-subtitle"> This application help you to create the JSON files needed to allow Boomi and ManyWho to work
@@ -163,25 +164,35 @@ class App extends Component {
                             </Col>
                         </Row>
                     </Grid>
-                    <MetadataViewer metadata={this.modifyMetadata} response={this.state.metadata}
-                                    addConfigurationValue={this.addConfigurationValue}
-                                    removeConfigurationValue={this.removeConfigurationValue}
-                                    addAction={this.addAction}
-                                    addType={this.addType}
-                                    removeType={this.removeType}
-                                    removeAction={this.removeAction}
-                    />
-                    <Button bsStyle="primary" onClick={()=> this.setState({openMetadataResponseInfo:true})}>
-                        <Glyphicon glyph="question-sign" />
-                    </Button>
-                    <Button className="button-default-size" bsStyle="primary" onClick={() => fileDownload(JSON.stringify(this.state.metadata, null, 2), 'MetadataResponseProfile.json')}>
-                        Metadata Response
-                    </Button>
-                    <CopyToClipboard text={JSON.stringify(this.state.metadata, null, 2)} onCopy={() => this.setState({copied: true})}>
-                        <Button bsStyle="primary">Copy to Clipboard Metadata Response</Button>
-                    </CopyToClipboard>{copied}
+                    <div className="panel panel-default panel-primary metadata-panel">
+                        <div className="panel-heading">
+                            <Button bsStyle="primary" className="metadata-inline" onClick={()=> this.setState({openMetadataResponseInfo:true})}>
+                                <Glyphicon glyph="question-sign" />
+                            </Button>
+                            <h4 className="metadata-inline">Metadata Description</h4>
+                        </div>
+                        <div className="panel-body">
+                            <MetadataViewer metadata={this.modifyMetadata} response={this.state.metadata}
+                                            addConfigurationValue={this.addConfigurationValue}
+                                            removeConfigurationValue={this.removeConfigurationValue}
+                                            addAction={this.addAction}
+                                            addType={this.addType}
+                                            removeType={this.removeType}
+                                            removeAction={this.removeAction}
+                            />
+                            <Button bsStyle="primary" onClick={()=> this.setState({openMetadataResponseInfo:true})}>
+                                <Glyphicon glyph="question-sign" />
+                            </Button>
+                            <Button className="button-default-size" bsStyle="primary" onClick={() => fileDownload(JSON.stringify(this.state.metadata, null, 2), 'MetadataResponseProfile.json')}>
+                                Metadata Response
+                            </Button>
+                            <CopyToClipboard text={JSON.stringify(this.state.metadata, null, 2)} onCopy={() => this.setState({copied: true})}>
+                                <Button bsStyle="primary">Copy to Clipboard Metadata Response</Button>
+                            </CopyToClipboard>{copied}
 
-                    <br/><br/><br/><br/>
+                            <br/><br/><br/><br/>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
