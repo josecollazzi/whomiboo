@@ -166,10 +166,12 @@ class App extends Component {
                     </Grid>
                     <div className="panel panel-default panel-primary metadata-panel">
                         <div className="panel-heading">
-                            <Button bsStyle="primary" className="metadata-inline" onClick={()=> this.setState({openMetadataResponseInfo:true})}>
-                                <Glyphicon glyph="question-sign" />
-                            </Button>
-                            <h4 className="metadata-inline">Metadata Description</h4>
+                            <h4>
+                                <a bsStyle="primary" className="btn btn-primary" onClick={()=> this.setState({openMetadataResponseInfo:true})}>
+                                    <Glyphicon glyph="question-sign" />
+                                </a>
+                                Metadata Description
+                            </h4>
                         </div>
                         <div className="panel-body">
                             <MetadataViewer metadata={this.modifyMetadata} response={this.state.metadata}
