@@ -1,4 +1,4 @@
-# WhomiBoo
+# WhomiBoom
 
 > This project is no longer supported, and the Boomi Workflow Component should be used instead
 
