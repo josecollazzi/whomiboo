@@ -1,7 +1,10 @@
 # WhomiBoo
 
-This App is a ManyWho Service Descriptor
-This project is under active development and is not fully functional.
+> This project is no longer supported, and the Boomi Workflow Component should be used instead
+
+## Introduction
+
+This App is a ManyWho Service Descriptor.
 
 [Run this app](https://manywho.github.io/whomiboo/)
 
