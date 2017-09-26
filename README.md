@@ -6,7 +6,7 @@
 
 This App is a ManyWho Service Descriptor.
 
-[Run this app](https://manywho.github.io/whomiboo/)
+[Run this app](https://manywho.github.io/legacy-whomiboom/)
 
 ## Common Tasks
 
